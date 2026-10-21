@@ -23,6 +23,17 @@ def main():
     #   data row (its values joined by commas) whose value in that column equals
     #   args.value.
 
+    file = open(args.filename)
+    header = file.readline().rstrip("\n")
+    header = header.split(",")
+
+    columnNumber = header.index(args.column)
+    for lineNumber, line in enumerate (file, start=1):
+        line = line.rstrip("\n")
+        row = line.split(",")
+        if args.value.lower() in row[columnNumber].lower():
+            #print(f"{lineNumber}: {line}")
+            print(",".join(row) )
 
 if __name__ == "__main__":
     main()
