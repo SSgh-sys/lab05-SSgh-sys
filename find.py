@@ -33,8 +33,10 @@ def main():
     pattern = args.pattern
     for lineNumber, line in enumerate (file, start=1):
         line = line.rstrip("\n")
-        if pattern.lower() in line.lower():
+        if args.ignore_case and pattern.lower() in line.lower():
             #print(f"{lineNumber}: {line}")
+            print(str(lineNumber) + ": " + line)
+        elif not args.ignore_case and pattern in line:
             print(str(lineNumber) + ": " + line)
     # TODO: open args.filename and read its lines. For each line, numbered starting
     #   at 1, print "<number>: <line>" when the line contains args.pattern.
